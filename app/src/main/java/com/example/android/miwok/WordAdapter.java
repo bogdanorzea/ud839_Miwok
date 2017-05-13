@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
                     R.layout.list_item, parent, false);
         }
 
-        Word currentWord = mWord.get(position);
+        final Word currentWord = mWord.get(position);
         // Populate Default translation TextView
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(currentWord.getDefaultTranslation());
@@ -55,7 +56,18 @@ public class WordAdapter extends ArrayAdapter<Word> {
         LinearLayout lay = (LinearLayout) listItemView.findViewById(R.id.word_layout);
         lay.setBackgroundColor(ContextCompat.getColor(getContext(), mColorResourceId));
 
+        //Set on click listener
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), currentWord.getSoundResourceId());
+                mediaPlayer.start();
+            }
+        });
+
         // Return the view
         return listItemView;
     }
+
+
 }

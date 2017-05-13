@@ -8,14 +8,21 @@ public class Word {
     private String mDefaultTranslation;
     private String mMiwokTranslation;
     private int mImageResourceId = -1;
+    private int mSoundResourceId = -1;
 
     public Word(String defaultTranslation, String miwokTranslation) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
     }
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId){
+
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
         this(defaultTranslation, miwokTranslation);
         mImageResourceId = imageResourceId;
+    }
+
+    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundResourceId) {
+        this(defaultTranslation, miwokTranslation, imageResourceId);
+        mSoundResourceId = soundResourceId;
     }
 
     /**
@@ -44,5 +51,12 @@ public class Word {
      */
     public boolean hasImage() {
         return mImageResourceId != -1;
+    }
+
+    /**
+     * Returns the associated sound resource id
+     */
+    public int getSoundResourceId() {
+        return mSoundResourceId;
     }
 }
