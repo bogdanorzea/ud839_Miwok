@@ -1,9 +1,5 @@
 package com.example.android.miwok;
 
-/**
- * Created by orzeab on 5/12/2017.
- */
-
 public class Word {
     private String mDefaultTranslation;
     private String mMiwokTranslation;
@@ -15,14 +11,14 @@ public class Word {
         mMiwokTranslation = miwokTranslation;
     }
 
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
+    public Word(String defaultTranslation, String miwokTranslation, int soundResourceId) {
         this(defaultTranslation, miwokTranslation);
-        mImageResourceId = imageResourceId;
+        mSoundResourceId = soundResourceId;
     }
 
     public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundResourceId) {
-        this(defaultTranslation, miwokTranslation, imageResourceId);
-        mSoundResourceId = soundResourceId;
+        this(defaultTranslation, miwokTranslation, soundResourceId);
+        mImageResourceId = imageResourceId;
     }
 
     /**
