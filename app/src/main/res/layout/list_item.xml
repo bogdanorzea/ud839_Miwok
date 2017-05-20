@@ -25,4 +25,9 @@
             style="@style/TranslationWordStyle"
             tools:text="one" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/playIcon"
+        style="@style/TranslationPlayIconStyle"
+        android:src="@drawable/ic_play_arrow" />
 </LinearLayout>

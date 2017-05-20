@@ -55,6 +55,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         LinearLayout lay = (LinearLayout) listItemView.findViewById(R.id.word_layout);
         lay.setBackgroundColor(ContextCompat.getColor(getContext(), mColorResourceId));
 
+        // Set background color for play icon
+        ImageView playIcon = (ImageView) listItemView.findViewById(R.id.playIcon);
+        playIcon.setBackgroundColor(ContextCompat.getColor(getContext(), mColorResourceId));
+
         // Return the view
         return listItemView;
     }
