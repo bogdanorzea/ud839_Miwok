@@ -14,19 +14,19 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class CategoryFragment extends Fragment {
-    ArrayList<Word> words;
-    int backgroundColorId = -1;
+    private ArrayList<Word> words;
+    private int backgroundColorId = -1;
 
-    AudioManager am;
+    private AudioManager am;
     private MediaPlayer mMediaPlayer;
 
-    AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+    private AudioManager.OnAudioFocusChangeListener afChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 releaseMediaPlayer();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                pauseMediaPlayer();
+                mMediaPlayer.pause();
                 mMediaPlayer.seekTo(0);
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                 mMediaPlayer.start();
@@ -51,13 +51,6 @@ public class CategoryFragment extends Fragment {
             mMediaPlayer = null;
         }
         am.abandonAudioFocus(afChangeListener);
-    }
-
-    private void pauseMediaPlayer() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer.pause();
-            mMediaPlayer = null;
-        }
     }
 
     @Override
