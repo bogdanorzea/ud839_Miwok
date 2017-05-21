@@ -1,6 +1,20 @@
 package com.example.android.miwok;
 
-public class Word {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Word implements Parcelable{
+    public static final Creator<Word> CREATOR = new Creator<Word>() {
+        @Override
+        public Word createFromParcel(Parcel in) {
+            return new Word(in);
+        }
+
+        @Override
+        public Word[] newArray(int size) {
+            return new Word[size];
+        }
+    };
     private String mDefaultTranslation;
     private String mMiwokTranslation;
     private int mImageResourceId = -1;
@@ -19,6 +33,13 @@ public class Word {
     public Word(String defaultTranslation, String miwokTranslation, int imageResourceId, int soundResourceId) {
         this(defaultTranslation, miwokTranslation, soundResourceId);
         mImageResourceId = imageResourceId;
+    }
+
+    protected Word(Parcel in) {
+        mDefaultTranslation = in.readString();
+        mMiwokTranslation = in.readString();
+        mImageResourceId = in.readInt();
+        mSoundResourceId = in.readInt();
     }
 
     /**
@@ -67,5 +88,18 @@ public class Word {
                 ", mAudioResourceId=" + mSoundResourceId +
                 ", mImageResourceId=" + mImageResourceId +
                 '}';
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mDefaultTranslation);
+        dest.writeString(mMiwokTranslation);
+        dest.writeInt(mImageResourceId);
+        dest.writeInt(mSoundResourceId);
+    }
+
+    @Override
+    public int describeContents() {
+        return hashCode();
     }
 }
